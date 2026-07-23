@@ -21,9 +21,18 @@ Return Value
 
 int ungetc(int c, FILE *stream)
 {
-    if (stream == NULL || stream == stdout || stream == stderr) return EOF;
-    if (stream->unget_char) return EOF;
-    
-    stream->unget_char = c;
-    return c;
+    if (stream == NULL || stream == stdout || stream == stderr)
+        return EOF;
+
+    if (c == EOF)
+        return EOF;
+
+    if (stream->has_unget_char)
+        return EOF;
+
+    stream->unget_char = (unsigned char)c;
+    stream->has_unget_char = 1;
+    stream->eof = 0;
+
+    return (unsigned char)c;
 }

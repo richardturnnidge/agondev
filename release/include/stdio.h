@@ -14,7 +14,8 @@ typedef struct
     unsigned char eof;
     unsigned char err;
     unsigned char text_mode;            // Text or binary mode (true if text mode)
-    unsigned char unget_char;           // unget character, 0 if none
+    unsigned char unget_char;           // unget character
+    unsigned char has_unget_char;       // unget_char may be a \0 pushback
 } FILE;
 
 // Agon MOS allows for 8 open files these will have indexes 0-7

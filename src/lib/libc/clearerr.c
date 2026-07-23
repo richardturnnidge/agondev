@@ -22,7 +22,7 @@ void clearerr(FILE *stream)
 {
     if ( stream == NULL ) return;
 
-    _file_streams[stream->fhandle].eof = 0;
-    _file_streams[stream->fhandle].err = 0;
+    stream->eof = 0;
+    stream->err = 0;
     return;
 }

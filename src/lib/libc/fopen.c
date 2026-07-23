@@ -124,6 +124,7 @@ FILE* fopen(const char *__restrict filename, const char *__restrict mode)
     _file_streams[index].eof = 0;
     _file_streams[index].err = 0;
     _file_streams[index].unget_char = 0;
+    _file_streams[index].has_unget_char = 0;
     if ( strchr(mode, 'b') ) _file_streams[index].text_mode = false;
     else _file_streams[index].text_mode = true;
 

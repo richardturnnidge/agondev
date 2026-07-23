@@ -1,26 +1,19 @@
-/* ferror
+/* fflush
    ------
 
-The C library function int fflush(FILE *stream) flushes the output buffer of a stream.
-
-Declaration: Following is the declaration for fflush() function.
-  int fflush(FILE *stream)
-
-Parameters
-  stream −  This is the pointer to a FILE object that specifies a buffered stream.
-
-Return Value
-  This function returns a zero value on success. If an error occurs, EOF is returned and
-  the error indicator is set (i.e. feof).
-
-Notes:
-  This currently does nothing as stdio is not buffered.
+There is currently no stdio buffering, so output streams require no work.
+For an input stream, discard the single pushed-back character.
 */
 
 #include <stdio.h>
 
 int fflush(FILE *stream)
 {
+    /* fflush(NULL) means all output streams; none are buffered here. */
+    if (stream == NULL)
+        return 0;
+
     stream->unget_char = 0;
+    stream->has_unget_char = 0;
     return 0;
 }
